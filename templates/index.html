@@ -8,29 +8,33 @@
 <div class="page-header text-center">
     <h1>Blur faces in any youtube video!</h1>
 </div>
-<form action ="#" method="POST">
+<form action ="#",method="POST">
     <div class="form-group text-center">
         <!-- <label for="exampleFormControlInput1">Email address</label> -->
         <input type="text" class="form-control" name="urlSubmission"id="searchQuery" placeholder="Search for videos here!">
         <input type="submit" value="submit" onclick=loading() />
-    </div>
-    {%if loading%}
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-    {%else%}
-        <p>Not loading!</p>
-    {%endif%}
-
-    <div class="resultVid">
-                
-        <!-- <div class="embed-responsive embed-responsive-16by9"> 
-            <video width="320" height="240" controls>
-                <source src="movie.mp4" type="video/mp4">
-              </video>
-        </div>  -->
-    </div>
+    </div>    
 </form>
+{%if loading%}
+<p>true</p>
+{%else%}
+<p>false</p>
+{%endif%}
+{%if loading%}
+<div class="loading" id="loadingId">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+<!-- <div class="content" id="contentId">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div> -->
+{%endif%}
+
 {%endblock%}

@@ -12,12 +12,11 @@ def downloadYouTubeVideo(videourl, path):
     if not os.path.exists(path):
         os.makedirs(path)
     yt.download(path)
-    finishedLoading = True
+    
 
 
 app = Flask(__name__)
-finishedLoading = False #for downloading videos
-
+loading=False
 
 @app.route("/loading")
 def loading():
@@ -28,15 +27,19 @@ def loading():
 
 @app.route('/'  ,methods = ["POST","GET"])
 def index():
-    needToLoad = False
     if request.method == "POST":
         url = request.form["urlSubmission"]
         if url != "": #if they have provided URL, start program
+            downloadYouTubeVideo(url,'./videos/')
+            
             return render_template("index.html",loading=True)
 
     # GET request or POST request with no input (user hit submit without giving URL)
-    return render_template("index.html",loading=False)
+    return render_template("index.html")
         
+# @app.route('/returnVideo')
+# def returnVideo():
+
 
 
 if __name__ == '__main__':
