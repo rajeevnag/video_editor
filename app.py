@@ -5,37 +5,34 @@ from time import sleep
 from threading import Thread
 
 def downloadYouTubeVideo(videourl, path):
-    #delay start by 2 seconds so that index page has time to return html code before loading
-    sleep(2)
     yt = YouTube(videourl)
     yt = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
     if not os.path.exists(path):
         os.makedirs(path)
     yt.download(path)
+    return 0
     
 
 
 app = Flask(__name__)
 loading=False
 
-@app.route("/loading")
-def loading():
-    if(finishedLoading):
-        return redirect(url_for("index"))
 
-    return render_template("loading.html")
 
-@app.route('/'  ,methods = ["POST","GET"])
+@app.route('/',methods = ["POST","GET"])
 def index():
+    print('method:' + request.method)
     if request.method == "POST":
-        url = request.form["urlSubmission"]
+        url = request.form["urlSub"]
         if url != "": #if they have provided URL, start program
-            downloadYouTubeVideo(url,'./videos/')
-            
-            return render_template("index.html",loading=True)
+            downloadResult = downloadYouTubeVideo(url,'./videos/')
+            if downloadResult == 0:
+                return render_template("index.html",testStr = "GOOD")
+            return render_template("index.html",testStr="BAD")
 
     # GET request or POST request with no input (user hit submit without giving URL)
-    return render_template("index.html")
+    else:
+        return render_template("index.html",testStr="NEUTRAL")
         
 # @app.route('/returnVideo')
 # def returnVideo():
