@@ -22,18 +22,26 @@
         <p></p>
     </div>
 </div>
-
+{%if status == "working"%}
 <div class="content d-flex justify-content-center" id="contentId">
-    <div>
-        <p>CONTENT HERE</p>
-    </div>
-    
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src={{ url_for('static',filename='/videos/finalBlur.mp4') }} allowfullscreen=""></iframe>
+      </div>
 </div>
+<style>
+    #blurVideo{
+        width: 66vw;
+        
+    }
+    
+</style>
+{%elif status== "err"%}
+<div class="text-center">
+    <h3>Video not found, please enter another URL</h3>
+</div>
+{%endif%}
 
 <style>
-    #contentId div{
-        display: none;
-    }
     #loadingId {
         display: none;
     }

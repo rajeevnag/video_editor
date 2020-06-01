@@ -1,4 +1,9 @@
 function loading(){
-    console.log('TESTING')
     document.getElementById('loadingId').style.display = 'block';
 }
+
+// function displayVideo(){
+//     if({{vidName == "vid.mp4"}}){
+
+//     }
+// }
