@@ -8,12 +8,20 @@
 <div class="page-header text-center">
     <h1>Blur faces in any youtube video!</h1>
 </div>
-<form action="#", method="POST">
-    <div class="form-group text-center">
-        <input type="text" class="form-control" name="urlSub"id="searchQuery" placeholder="Search for videos here!">
-        <input type="submit" value="submit" onclick=loading() />
+<div class="row" id="la">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" id="lal">
+        <form action="#", method="POST">
+            <div class="form-group text-center">
+                <input type="text" class="form-control" name="urlSub"id="searchQuery" placeholder="Search for videos here!">
+                <input type="submit" value="submit" onclick=loading() id="submitButton"/>
+            </div>
+        </form>
     </div>
-</form>
+    <div class="col-lg-2"></div>
+</div>
+
+
 <div class="loading" id="loadingId">
     <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
@@ -23,21 +31,26 @@
     </div>
 </div>
 {%if status == "working"%}
-<div class="content d-flex justify-content-center" id="contentId">
-    <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src={{ url_for('static',filename='/videos/finalBlur.mp4') }} allowfullscreen=""></iframe>
-      </div>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="content d-flex justify-content-center col-lg-8" id="contentId">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src={{ url_for('static',filename='/videos/finalBlur.mp4') }} allowfullscreen=""></iframe>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
 </div>
-<style>
-    #blurVideo{
-        width: 66vw;
-        
-    }
-    
-</style>
 {%elif status== "err"%}
 <div class="text-center">
     <h3>Video not found, please enter another URL</h3>
+</div>
+{%elif status == "empty"%}
+<div class="text-center">
+    <h3>Please enter a non-blank URL!</h3>
+</div>
+{%else%}
+<div class="text-center">
+    <h3>Supported browsers: Google Chrome, Mozilla Firefox </h3>
 </div>
 {%endif%}
 

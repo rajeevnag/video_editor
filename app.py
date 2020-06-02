@@ -16,6 +16,7 @@ def download_youtube_video(videourl, path):
     if not os.path.exists(path):
         os.makedirs(path)
     yt.download(path,filename="vid")
+    print('download complete')
     return 0
 
 def getFirstWidthHeight(cap,net):
@@ -76,11 +77,12 @@ def modify_video():
     weightsPath = os.path.sep.join([face_path,
         "res10_300x300_ssd_iter_140000.caffemodel"])
     net = cv2.dnn.readNet(prototxtPath, weightsPath)
-    # print('1')
+
     # load the input image from disk, clone it, and grab the image spatial
     # dimensions
-    cap = cv2.VideoCapture('./videos/vid.mp4')
-
+    
+    cap = cv2.VideoCapture('./static/videos/vid.mp4')
+    
     #grab audio from video 
     from moviepy.editor import VideoFileClip
     import sys
@@ -151,8 +153,10 @@ def index():
                 modify_video()
                 return render_template("index.html",status="working")
             return render_template("index.html",status="err")
+        else:
+            return render_template("index.html",status="empty")
 
-    # GET request
+    # # GET request
     else:
         # return render_template("index.html",vidName="N/A")
         return render_template("index.html",status="")
