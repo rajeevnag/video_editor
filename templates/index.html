@@ -8,34 +8,16 @@
 <div class="page-header text-center">
     <h1>Blur faces in any youtube video!</h1>
 </div>
-<div class="row" id="la">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8" id="lal">
-        <form action="#", method="POST">
-            <div class="form-group text-center">
-                <input type="text" class="form-control" name="urlSub"id="searchQuery" placeholder="Search for videos here!">
-                <input type="submit" value="submit" onclick=loading() id="submitButton"/>
-            </div>
-        </form>
-    </div>
-    <div class="col-lg-2"></div>
-</div>
 
-
-<div class="loading" id="loadingId">
-    <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <p></p>
-    </div>
-</div>
 {%if status == "working"%}
-<div class="row">
+<div class="row" id="vid">
     <div class="col-lg-2"></div>
     <div class="content d-flex justify-content-center col-lg-8" id="contentId">
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src={{ url_for('static',filename='/videos/finalBlur.mp4') }} allowfullscreen=""></iframe>
+            <video class="vidClass" controls>
+                <source src={{ url_for('static',filename='/videos/finalBlur.mp4') }} type="video/mp4">
+                    Your broswer does not support this video.
+            </video>
         </div>
     </div>
     <div class="col-lg-2"></div>
@@ -49,10 +31,52 @@
     <h3>Please enter a non-blank URL!</h3>
 </div>
 {%else%}
-<div class="text-center">
-    <h3>Supported browsers: Google Chrome, Mozilla Firefox </h3>
+
+<div class="text-center" id="webInfo">
+    <p>Supported browsers: Google Chrome, Microsoft Edge, Mozilla Firefox </p>
+</div>
+<div class="container"> 
+    <!--bootstrap card with 3 horizontal images-->
+    <div class="row text-center"> 
+        <div class="col-md-4"> 
+            <img class="card-img-top" src= {{ url_for('static',filename='/images/blurEx3.jpeg') }}> 
+        </div> 
+        <div class="col-md-4"> 
+            <img class="card-img-top" src= {{ url_for('static',filename='/images/blurEx2.jpeg') }}> 
+        </div> 
+          
+        <div class="col-md-4"> 
+            <img class="card-img-top" src= {{ url_for('static',filename='/images/blurEx5.webp') }}> 
+        </div> 
+    </div> 
 </div>
 {%endif%}
+
+<div class="loading" id="loadingId">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <p></p>
+    </div>
+</div>
+
+<div class="text-center" id="warningText">
+    <p>Due to facial recognition library speeds, loading time will be roughly proportional to length of video.</p>
+</div>
+<div class="row" id="searchBar">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" id="lal">
+        <form action="#", method="POST">
+            <div class="form-group text-center">
+                <input type="text" class="form-control" name="urlSub"id="searchQuery" placeholder="Search for videos here!">
+                <input type="submit" value="submit" onclick=loading() id="submitButton"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
 
 <style>
     #loadingId {

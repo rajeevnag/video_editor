@@ -1,5 +1,30 @@
-body{
+*{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    
 }
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    color: rgb(155, 184, 238);
+}
+
+#submitButton{
+    margin-top: 0.5%;
+}
+/* #searchBar{
+    margin-top: 3%;
+} */
+#warningText{
+    margin-top: 3%;
+}
+#loadingId{
+    margin-top: 2%;
+}
+video{
+    border: 5px solid black;
+}
+
+
+
