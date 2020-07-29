@@ -11,7 +11,10 @@ import cv2
 
 
 def download_youtube_video(videourl, path):
-    yt = YouTube(videourl)
+    try:
+        yt = YouTube(videourl)
+    except:
+        print('err')
     yt = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
     if not os.path.exists(path):
         os.makedirs(path)
@@ -155,7 +158,7 @@ def index():
             return render_template("index.html",status="err")
         else:
             return render_template("index.html",status="empty")
-
+        
     # # GET request
     else:
         # return render_template("index.html",vidName="N/A")
